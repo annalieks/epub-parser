@@ -7,3 +7,5 @@ output:
     id: '1MDmT9V7MHZJfz8I9pqVWJP2xtynYGdIJE_fPFGtE7Z8'
     page: 'Rework'
     range: 'A2:F'
+config:
+  frequency: 4

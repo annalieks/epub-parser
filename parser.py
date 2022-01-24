@@ -36,21 +36,28 @@ async def retrieve_metadata(word: str) -> list:
     response = requests.get(f'https://api.dictionaryapi.dev/api/v2/entries/en/{word}')
     if response.status_code != 200:
         logging.warning(f'Could not retrieve metadata for word {word}. Got {response.status_code} response')
-        return []
-    body = response.json()
-    metadata = body[0]
-    all_meanings = ''
+        return ['', '', '']
+    metadata = response.json()[0]
+    all_meanings = []
     for meaning in metadata['meanings']:
-        all_meanings = f'{all_meanings}{meaning.get("partOfSpeech")}: '
+        definitions = []
         for definition in meaning.get('definitions', []):
-            all_meanings = f"{all_meanings}\n- {definition.get('definition', '')}. " \
-                           f"Example: {definition.get('example', '')}"
-        all_meanings = f'{all_meanings}\n'
-    result.append(all_meanings)
-    result.append('' if len(metadata.get('phonetics', '')) <= 0 else metadata['phonetics'][0].get('text'))
-    result.append('' if len(metadata.get('phonetics', '')) <= 0 else f'https:{metadata["phonetics"][0]["audio"]}')
+            example_str = f"\nExample: {definition.get('example')}" if definition.get('example') else ''
+            definition_str = f"- {definition.get('definition')}{example_str}"
+            definitions.append(definition_str)
+        definitions_str = '\n'.join(definitions)
+        all_meanings.append(f"{meaning.get('partOfSpeech')}\n{definitions_str}")
+    result.append('\n'.join(all_meanings))
+    result.extend(extract_phonetics(metadata))
     logging.info(f'Retrieved metadata for {word}: {result}')
     return result
+
+
+def extract_phonetics(metadata):
+    phonetics = metadata.get('phonetics')
+    if phonetics is None or len(phonetics) <= 0:
+        return ['', '']
+    return [phonetics[0].get('text'), f"https:{phonetics[0].get('audio')}"]
 
 
 async def retrieve_frequency(word: str):
@@ -65,10 +72,12 @@ async def retrieve_translation(word: str) -> str:
 
 async def compose_rows(words: set):
     for word in words:
+        frequency = await asyncio.create_task(retrieve_frequency(word))
+        if frequency >= config['config']['frequency']:
+            continue
         result = [word]
         translation = await asyncio.create_task(retrieve_translation(word))
         metadata = await asyncio.create_task(retrieve_metadata(word))
-        frequency = await asyncio.create_task(retrieve_frequency(word))
         result.append(translation)
         result.extend(metadata)
         result.append(frequency)

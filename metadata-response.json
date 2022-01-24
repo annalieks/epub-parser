@@ -1,0 +1,75 @@
+[
+    {
+        "word": "weird",
+        "phonetic": "wɪəd",
+        "phonetics": [
+            {
+                "text": "wɪəd",
+                "audio": "//ssl.gstatic.com/dictionary/static/sounds/20200429/weird--_gb_1.mp3"
+            }
+        ],
+        "origin": "Old English wyrd  ‘destiny’, of Germanic origin. The adjective (late Middle English) originally meant ‘having the power to control destiny’, and was used especially in the Weird Sisters, originally referring to the Fates, later the witches in Shakespeare's Macbeth ; the latter use gave rise to the sense ‘unearthly’ (early 19th century).",
+        "meanings": [
+            {
+                "partOfSpeech": "adjective",
+                "definitions": [
+                    {
+                        "definition": "suggesting something supernatural; unearthly.",
+                        "example": "weird, inhuman sounds",
+                        "synonyms": [
+                            "uncanny",
+                            "eerie",
+                            "unnatural",
+                            "preternatural",
+                            "supernatural",
+                            "unearthly",
+                            "other-worldly",
+                            "unreal",
+                            "ghostly",
+                            "mysterious",
+                            "mystifying",
+                            "strange",
+                            "abnormal",
+                            "unusual",
+                            "eldritch",
+                            "creepy",
+                            "spooky",
+                            "freaky",
+                            "rum"
+                        ],
+                        "antonyms": [
+                            "normal",
+                            "ordinary"
+                        ]
+                    },
+                    {
+                        "definition": "connected with fate.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ]
+            },
+            {
+                "partOfSpeech": "noun",
+                "definitions": [
+                    {
+                        "definition": "a person's destiny.",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ]
+            },
+            {
+                "partOfSpeech": "verb",
+                "definitions": [
+                    {
+                        "definition": "induce a sense of disbelief or alienation in someone.",
+                        "example": "blue eyes weirded him out, and Ivan's were especially creepy",
+                        "synonyms": [],
+                        "antonyms": []
+                    }
+                ]
+            }
+        ]
+    }
+]
