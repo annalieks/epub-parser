@@ -4,8 +4,8 @@ input:
   target_language: 'ru'
 output:
   spreadsheet:
-    id: '1MDmT9V7MHZJfz8I9pqVWJP2xtynYGdIJE_fPFGtE7Z8'
-    page: 'Rework'
+    id: '<your Google spreadsheet id>'
+    page: '<your Google spreadsheet page>'
     range: 'A2:F'
 config:
   frequency: 4
